@@ -629,12 +629,9 @@ class InlineEntityFormMultiple extends WidgetBase implements ContainerFactoryPlu
 
     $this->initializeIefController();
     $field_name = $this->fieldDefinition->getName();
-    if (isset($form['#ief_parents'])) {
-      $parents = $form['#ief_parents'];
-    }
-    else {
-      $parents = array($field_name, 'form');
-    }
+
+    // Extract the values from $form_state->getValues().
+    $parents = array_merge($form['#parents'], array($field_name, 'form'));
     $ief_id = sha1(implode('-', $parents));
     $this->setIefId($ief_id);
 
