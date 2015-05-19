@@ -290,7 +290,7 @@ class EntityInlineEntityFormHandler implements InlineEntityFormHandlerInterface 
     $child_form_state->setRebuildInfo($rebuild_info);
 
     $child_form_state->set('inline_entity_form', $form_state->get('inline_entity_form'));
-    $child_form_state->set('langcode', $entity->langcode->value);
+    $child_form_state->set('langcode', $entity->language()->getId());
 
     $child_form_state->set('field', $form_state->get('field'));
     $child_form_state->setTriggeringElement($form_state->getTriggeringElement());
@@ -303,7 +303,7 @@ class EntityInlineEntityFormHandler implements InlineEntityFormHandlerInterface 
    * Cleans up the form state for a submitted entity form.
    *
    * After field_attach_submit() has run and the form has been closed, the form
-   * state still contains field data in $form_state['field']. Unless that
+   * state still contains field data in $form_state->get('field'). Unless that
    * data is removed, the next form with the same #parents (reopened add form,
    * for example) will contain data (i.e. uploaded files) from the previous form.
    *
