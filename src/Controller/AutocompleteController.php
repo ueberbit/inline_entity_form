@@ -80,7 +80,7 @@ class AutocompleteController implements ContainerInjectionInterface {
     }
 
     $results = array();
-    if ($field->getType() == 'entity_reference') {
+    if ($field->getType() == 'entity_reference' || $field->getType() == 'entity_reference_metadata') {
       /** @var \Drupal\Core\Entity\EntityReferenceSelection\SelectionInterface $handler */
       $handler = $this->selectionManager->getSelectionHandler($field);
       $entity_labels = $handler->getReferenceableEntities($string, $widget['settings']['match_operator'], 10);
